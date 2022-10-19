@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styles from './styles/App.module.scss';
+
+import keep from './assets/keep.png';
+import mongodb from './assets/mongodb.png';
+import react from './assets/react.png';
+import sass from './assets/sass.png';
+import typescript from './assets/typescript.png';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+		<div className={styles.App}>
+			<div className={styles.stack}>
+				<img className={styles.stack_icon} src={react} />
+				{' + '}
+				<img className={styles.stack_icon} src={typescript} />
+				{' + '}
+				<img className={styles.stack_icon} src={sass} />
+				{' + '}
+				<img className={styles.stack_icon} src={mongodb} />
+				{' = '}
+				<img className={styles.stack_icon} src={keep} />
+      </div>
+      <form className={styles.form}>
+        <input className={styles.form_title} placeholder="Title" />
+        <input className={styles.form_body} placeholder="Take a note..." />
+      </form>
+		</div>
+	);
 }
 
 export default App;
