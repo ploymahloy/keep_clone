@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import styles from './styles/App.module.scss';
 
 import keep from './assets/keep.png';
@@ -19,10 +19,29 @@ const DUMMY_NOTES = [
 	{
 		title: 'Note Title 3',
 		body: '3 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga nam qui odit atque dolorum nemo adipisci, modi a ducimus dolor!'
+	},
+	{
+		title: 'Note Title 4',
+		body: '4 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga nam qui odit atque dolorum nemo adipisci, modi a ducimus dolor!'
+	},
+	{
+		title: 'Note Title 5',
+		body: '5 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga nam qui odit atque dolorum nemo adipisci, modi a ducimus dolor!'
+	},
+	{
+		title: 'Note Title 6',
+		body: '6 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga nam qui odit atque dolorum nemo adipisci, modi a ducimus dolor!'
 	}
 ];
 
 function App() {
+	const formKeyPressHandler = (e: any) => {
+		if (e.key === 'Enter') {
+			// Push values to array
+			alert('Enter');
+		} else return;
+	};
+
 	return (
 		<div className={styles.App}>
 			<div className={styles.stack}>
@@ -37,7 +56,7 @@ function App() {
 				<img className={styles.stack_icon} src={keep} alt="" />
 			</div>
 			<main>
-				<form className={styles.form}>
+				<form className={styles.form} onKeyPress={formKeyPressHandler}>
 					<input className={styles.form_title} placeholder="Title" />
 					<input className={styles.form_body} placeholder="Take a note..." />
 				</form>

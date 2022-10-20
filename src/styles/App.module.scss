@@ -9,8 +9,6 @@ $text-dark: rgb(32, 33, 36);
 
 .App {
 	margin: 0 auto;
-	width: 85vw;
-	box-sizing: border-box;
   font-family: Roboto;
 }
 
@@ -30,6 +28,8 @@ $text-dark: rgb(32, 33, 36);
 
 .form {
 	display: block;
+  box-sizing: inherit;
+
 	margin: 1rem auto;
 	padding: 5px;
 	width: 598px;
@@ -42,12 +42,15 @@ $text-dark: rgb(32, 33, 36);
 
 	.form_title,
 	.form_body {
+    display: block;
+    box-sizing: border-box;
 		padding: 12px 16px;
-		width: 94.75%;
-		max-width: 100%;
+		width: 100%;
+
 		border: none;
-		border-radius: $border-radius;
+    border: 1px solid black;
 		outline: none;
+		border-radius: $border-radius;
 
 		font-size: 16px;
 		font-weight: 600;
@@ -61,10 +64,12 @@ $text-dark: rgb(32, 33, 36);
     font-size: 14px;
   }
 
+  .form_title,
   .form_title::placeholder {
     color: $text-light;
   }
 
+  .form_body,
   .form_body::placeholder {
     color: $text-gray;
   }
@@ -76,7 +81,7 @@ $text-dark: rgb(32, 33, 36);
   grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
   grid-gap: 1rem;
 
-  margin: 2rem 0;
+  margin: 2rem 4rem;
   color: $text-dark;
 
   &_card {
@@ -96,5 +101,15 @@ $text-dark: rgb(32, 33, 36);
       font-size: 14px;
       font-weight: 400;
     }
+  }
+}
+
+@media (max-width: 620px) {
+  .App {
+    margin: 0;
+  }
+
+  .form {
+    width: fit-content;
   }
 }
