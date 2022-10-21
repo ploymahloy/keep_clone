@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaTrash } from 'react-icons/fa';
 
 import styles from './styles/App.module.scss';
 import keep from './assets/keep.png';
@@ -18,8 +19,7 @@ const DUMMY_NOTES = [
 	},
 	{
 		title: 'Note Title',
-    body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur distinctio odit facere molestiae neque vero harum minus qui voluptatem. Enim, modi excepturi? Adipisci assumenda nisi provident consequuntur officia praesentium magnam!'
-    
+		body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur distinctio odit facere molestiae neque vero harum minus qui voluptatem. Enim, modi excepturi? Adipisci assumenda nisi provident consequuntur officia praesentium magnam!'
 	},
 	{
 		title: 'Note Title',
@@ -44,13 +44,12 @@ function App() {
 		setBody(e.target.value);
 	};
 
-  const handleFormSubmit = (e: any) => {
-    e.preventDefault();
-    // setNotes([...DUMMY_NOTES, { title, body }]);
-    setNotes((DUMMY_NOTES) => {
-			return [{title, body}, ...DUMMY_NOTES];
-    });
-    
+	const handleFormSubmit = (e: any) => {
+		e.preventDefault();
+		setNotes((DUMMY_NOTES) => {
+			return [{ title, body }, ...DUMMY_NOTES];
+		});
+
 		setTitle('');
 		setBody('');
 	};
@@ -65,7 +64,7 @@ function App() {
 		<div className={styles.App}>
 			<div className={styles.brand}>
 				<img className={styles.brand_icon} src={keep} alt="" />
-				Persist
+				{'Persist'}
 			</div>
 			<main className={styles.main}>
 				<form className={styles.form} onKeyPress={formKeyPressHandler}>
@@ -86,8 +85,15 @@ function App() {
 					{notes.map((note, id) => {
 						return (
 							<div className={styles.notes_card} key={id}>
-								<p className={styles.notes_card_title}>{note.title}</p>
-								<p className={styles.notes_card_body}>{note.body}</p>
+								<div>
+									<p className={styles.notes_card_title}>{note.title}</p>
+									<p className={styles.notes_card_body}>{note.body}</p>
+								</div>
+								<div className={styles.notes_card_footer}>
+									<button className={styles.notes_card_footer_btn}>
+										<FaTrash />
+									</button>
+								</div>
 							</div>
 						);
 					})}
