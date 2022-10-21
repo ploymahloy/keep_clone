@@ -8,31 +8,37 @@ $text-gray: rgb(76, 76, 76);
 $text-dark: rgb(32, 33, 36);
 
 .App {
-	margin: 0 auto;
   font-family: Roboto;
+  box-sizing: border-box;
 }
 
-.stack {
+.brand {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
+	margin-top: 1rem;
 
-	margin-top: 2rem;
+  color: $text-light;
 	font-size: 1.5rem;
 
 	&_icon {
 		margin: 0 1rem;
-		width: 50px;
+		width: 40px;
 	}
+}
+
+.main {
+	margin: 0 4rem;
 }
 
 .form {
 	display: block;
-  box-sizing: inherit;
+  box-sizing: border-box;
 
-	margin: 1rem auto;
+	margin: 16px auto;
 	padding: 5px;
-	width: 598px;
+	width: 100%;
+  max-width: 598px;
 
 	border: $border;
 	border-radius: $border-radius;
@@ -48,7 +54,6 @@ $text-dark: rgb(32, 33, 36);
 		width: 100%;
 
 		border: none;
-    border: 1px solid black;
 		outline: none;
 		border-radius: $border-radius;
 
@@ -79,12 +84,13 @@ $text-dark: rgb(32, 33, 36);
   --auto-grid-min-size: 16rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
-  grid-gap: 1rem;
+  grid-gap: 8px;
 
-  margin: 2rem 4rem;
+  margin: 2rem auto;
   color: $text-dark;
 
   &_card {
+    min-height: 16rem;
     border: $border;
     border-radius: $border-radius;
 
@@ -104,12 +110,8 @@ $text-dark: rgb(32, 33, 36);
   }
 }
 
-@media (max-width: 620px) {
-  .App {
-    margin: 0;
-  }
-
-  .form {
-    width: fit-content;
+@media (max-width: 768px) {
+  .main {
+    margin: 0 1rem;
   }
 }
