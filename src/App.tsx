@@ -6,28 +6,24 @@ import keep from './assets/keep.png';
 
 const DUMMY_NOTES = [
 	{
-		title: 'Note Title',
+		id: 952,
+    title: 'Note Title',
 		body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum inventore, recusandae perferendis ab tenetur ducimus ea maiores! Consectetur ipsam harum, officiis eius quisquam mollitia reiciendis, asperiores, similique dolorem placeat ut.'
 	},
 	{
-		title: 'Note Title',
+		id: 2421,
+    title: 'Note Title',
 		body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, odio harum praesentium mollitia animi veritatis aut perspiciatis voluptate quod nostrum minima distinctio repellat asperiores impedit saepe deserunt quia doloribus sed.'
 	},
 	{
-		title: 'Note Title',
+		id: 6289,
+    title: 'Note Title',
 		body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate harum et exercitationem rerum eligendi reprehenderit adipisci corporis. Ea fugiat voluptatibus ad suscipit eius. Ut expedita sint amet quo ad necessitatibus.'
 	},
 	{
-		title: 'Note Title',
+		id: 113,
+    title: 'Note Title',
 		body: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur distinctio odit facere molestiae neque vero harum minus qui voluptatem. Enim, modi excepturi? Adipisci assumenda nisi provident consequuntur officia praesentium magnam!'
-	},
-	{
-		title: 'Note Title',
-		body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit labore commodi facere magni nobis harum, totam incidunt et quibusdam magnam sed obcaecati dolorum consequatur, corporis nisi aperiam id corrupti! Numquam.'
-	},
-	{
-		title: 'Note Title',
-		body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit non numquam distinctio id excepturi perferendis soluta illo a architecto doloribus quos ipsam enim facilis eligendi, magni magnam in exercitationem laudantium?'
 	}
 ];
 
@@ -45,9 +41,16 @@ function App() {
 	};
 
 	const handleFormSubmit = (e: any) => {
-		e.preventDefault();
+    e.preventDefault();
+
+    const newNote = {
+      id: Math.round(Math.random() * 10000),
+      title: title,
+      body: body
+    }
+
 		setNotes((DUMMY_NOTES) => {
-			return [{ title, body }, ...DUMMY_NOTES];
+			return [newNote, ...DUMMY_NOTES];
 		});
 
 		setTitle('');
@@ -58,7 +61,11 @@ function App() {
 		if (e.key === 'Enter') {
 			handleFormSubmit(e);
 		} else return;
-	};
+  };
+  
+  const deleteNote = (id: any) => {
+    setNotes(notes.filter((note) => note.id !== id));
+  }
 
 	return (
 		<div className={styles.App}>
@@ -82,15 +89,15 @@ function App() {
 					/>
 				</form>
 				<section className={styles.notes}>
-					{notes.map((note, id) => {
+					{notes.map((note) => {
 						return (
-							<div className={styles.notes_card} key={id}>
+              <div className={styles.notes_card} key={note.id}>
 								<div>
 									<p className={styles.notes_card_title}>{note.title}</p>
 									<p className={styles.notes_card_body}>{note.body}</p>
 								</div>
-								<div className={styles.notes_card_footer}>
-									<button className={styles.notes_card_footer_btn}>
+                <div className={styles.notes_card_footer}>
+									<button className={styles.notes_card_footer_btn} onClick={() => deleteNote(note.id)}>
 										<FaTrash />
 									</button>
 								</div>
