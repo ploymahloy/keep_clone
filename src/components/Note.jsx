@@ -16,6 +16,11 @@ const Note = (props) => {
 				<p className={styles.notes_card_body}>{body}</p>
 			</div>
 			<div className={styles.notes_card_footer}>
+				<div
+					className={styles.notes_card_footer_gap}
+					onClick={() => setIsOpen(true)}
+				>
+				</div>
 				<button
 					className={styles.notes_card_footer_btn}
 					onClick={() => deleteNote(id)}
@@ -34,3 +39,5 @@ const Note = (props) => {
 };
 
 export default Note;
+
+

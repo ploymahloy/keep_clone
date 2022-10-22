@@ -1,8 +1,10 @@
 @import '_global.scss';
 
 .App {
+  margin: 0 auto;
 	font-family: Roboto;
 	box-sizing: border-box;
+  max-width: 1800px;
 }
 
 .brand {
