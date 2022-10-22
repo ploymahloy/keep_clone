@@ -1,80 +1,5 @@
 @import '_global.scss';
 
-.App {
-	font-family: Roboto;
-	box-sizing: border-box;
-}
-
-.brand {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	
-  margin: 1.25rem;
-  width: 125px;
-
-	color: $text-light;
-	font-size: 1.5rem;
-
-	&_icon {
-		width: 40px;
-	}
-}
-
-.main {
-	margin: 0 4rem;
-}
-
-.form {
-	display: block;
-	box-sizing: border-box;
-
-	margin: 0 auto;
-	padding: 5px;
-	width: 100%;
-	max-width: 598px;
-
-	border: $border;
-	border-radius: $border-radius;
-
-	box-shadow: $box-shadow;
-	-webkit-box-shadow: $box-shadow;
-	-moz-box-shadow: $box-shadow;
-
-	.form_title,
-	.form_body {
-		display: block;
-		box-sizing: border-box;
-		padding: 12px 16px;
-		width: 100%;
-
-		border: none;
-		outline: none;
-		border-radius: $border-radius;
-
-		font-size: 16px;
-		font-weight: 600;
-
-		&:focus {
-			outline: none;
-		}
-	}
-
-	.form_body {
-		font-size: 14px;
-	}
-
-	.form_title,
-	.form_title::placeholder {
-		color: $text-light;
-	}
-
-	.form_body,
-	.form_body::placeholder {
-		color: $text-gray;
-	}
-}
-
 .notes {
 	--auto-grid-min-size: 16rem;
 	display: grid;
@@ -137,11 +62,5 @@
   &_card:hover &_card_footer_btn {
     visibility: visible;
     transition: visibility 300ms;
-	}
-}
-
-@media (max-width: 768px) {
-	.main {
-		margin: 0 1rem;
 	}
 }

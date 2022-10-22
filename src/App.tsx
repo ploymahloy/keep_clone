@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
-import { FaTrash } from 'react-icons/fa';
 
+import Note from './components/Note.jsx';
 import styles from './styles/App.module.scss';
 import keep from './assets/keep.png';
 
@@ -28,9 +28,10 @@ const DUMMY_NOTES = [
 ];
 
 function App() {
-	const [notes, setNotes] = useState(DUMMY_NOTES);
+  const [notes, setNotes] = useState(DUMMY_NOTES);
+  const [isOpen, setIsOpen] = useState(false);
+  const [body, setBody] = useState('');
 	const [title, setTitle] = useState('');
-	const [body, setBody] = useState('');
 
 	const handleNewTitle = (e: ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
@@ -46,7 +47,7 @@ function App() {
 		const newNote = {
 			id: Math.round(Math.random() * 10000),
 			title: title,
-			body: body
+			body: body,
 		};
 
 		if (title || body) {
@@ -71,7 +72,7 @@ function App() {
 
 	const deleteNote = (id: any) => {
 		setNotes(notes.filter((note) => note.id !== id));
-	};
+  };
 
 	return (
 		<div className={styles.App}>
@@ -98,22 +99,16 @@ function App() {
 					/>
 				</form>
 				<section className={styles.notes}>
-					{notes.map((note) => {
-						return (
-							<div className={styles.notes_card} key={note.id}>
-								<div>
-									<p className={styles.notes_card_title}>{note.title}</p>
-									<p className={styles.notes_card_body}>{note.body}</p>
-								</div>
-								<div className={styles.notes_card_footer}>
-									<button
-										className={styles.notes_card_footer_btn}
-										onClick={() => deleteNote(note.id)}
-									>
-										<FaTrash />
-									</button>
-								</div>
-							</div>
+					{notes.map((note, key) => {
+            return (
+              <Note
+                key={key}
+                id={note.id}
+                title={note.title}
+                body={note.body}
+                deleteNote={deleteNote}
+                onClose={() => setIsOpen(false)}
+              />
 						);
 					})}
 				</section>
