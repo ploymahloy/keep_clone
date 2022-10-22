@@ -22,14 +22,15 @@ $icon-hover: rgb(231, 229, 229);
 .brand {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
-	margin-top: 1rem;
+	justify-content: space-between;
+	
+  margin: 1.25rem;
+  width: 125px;
 
 	color: $text-light;
 	font-size: 1.5rem;
 
 	&_icon {
-		margin: 0 1rem;
 		width: 40px;
 	}
 }
@@ -42,7 +43,7 @@ $icon-hover: rgb(231, 229, 229);
 	display: block;
 	box-sizing: border-box;
 
-	margin: 16px auto;
+	margin: 0 auto;
 	padding: 5px;
 	width: 100%;
 	max-width: 598px;
