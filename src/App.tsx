@@ -78,7 +78,7 @@ function App() {
 
 	const formSubmitHandler = (e: any) => {
 		handleFormSubmit(e);
-	};
+  };
 
 	const deleteNote = (id: any) => {
 		setNotes(notes.filter((note) => note.id !== id));

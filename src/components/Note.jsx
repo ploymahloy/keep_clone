@@ -7,7 +7,17 @@ import styles from '../styles/Note.module.scss';
 const Note = (props) => {
 	const { id, title, body, deleteNote } = props;
 
-	const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);  
+  const [noteTitle, setNoteTitle] = useState(title);
+  const [noteBody, setNoteBody] = useState(body);
+
+  const handleEditTitle = (val) => {
+    setNoteTitle(val);
+  }
+
+  const handleEditBody = (val) => {
+    setNoteBody(val);
+  }
 
 	return (
 		<div className={styles.notes_card} key={id}>
@@ -29,8 +39,10 @@ const Note = (props) => {
 				</button>
 			</div>
 			<Modal
-				title={title}
-				body={body}
+				title={noteTitle}
+        body={noteBody}
+        editTitle={handleEditTitle}
+        editBody={handleEditBody}
 				open={isOpen}
 				onClose={() => setIsOpen(false)}
 			/>
