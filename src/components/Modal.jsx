@@ -2,33 +2,17 @@ import ReactDom from 'react-dom';
 import styles from '../styles/Modal.module.scss';
 
 export default function Modal(props) {
-	const { title, editTitle, body, editBody, open, onClose } = props;
+	const { title, body, open, onClose } = props;
 
 	if (!open) return null;
-
-	const handleTitleChange = (e) => {
-		editTitle(e.target.value);
-  };
-  
-	const handleBodyChange = (e) => {
-		editBody(e.target.value);
-	};
 
 	return ReactDom.createPortal(
 		<>
 			<div className={styles.overlay} onClick={onClose} />
 			<div className={styles.modal}>
 				<div>
-					<input
-						className={styles.title}
-						value={title}
-						onChange={handleTitleChange}
-					/>
-					<textarea
-						className={styles.body}
-						value={body}
-						onChange={handleBodyChange}
-					/>
+					<p className={styles.title}>{title}</p>
+					<p className={styles.body}>{body}</p>
 				</div>
 				<button className={styles.button} onClick={onClose}>
 					Close

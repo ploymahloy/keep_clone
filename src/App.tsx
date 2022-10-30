@@ -60,14 +60,14 @@ function App() {
 			body: body,
 		};
 
-		if (title || body) {
+		if (title && body) {
 			setNotes((DUMMY_NOTES) => {
 				return [newNote, ...DUMMY_NOTES];
-			});
+      });
+      
+      setTitle('');
+      setBody('');
 		}
-
-		setTitle('');
-		setBody('');
 	};
 
 	const formKeyPressHandler = (e: any) => {
