@@ -1,80 +1,70 @@
 @import '_global.scss';
 
-.notes {
-  display: grid;
-	--auto-grid-min-size: 16rem;
-	grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
-	grid-gap: 8px;
+.notes_card {
+	display: inline-block;
+	margin: 0 0 20px;
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid;
+	width: 100%;
 
-	margin: 2rem auto;
-	color: $text-dark;
+	height: fit-content;
+	border: $border;
+	border-radius: $border-radius;
 
-	&_card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    // padding: 12px 16px;
+	&_title {
+		margin: 0;
+		padding: 12px 16px 0;
+		font-size: 16px;
+		font-weight: 500;
+	}
 
-		// min-height: 16rem;
-    height: fit-content;
-		border: $border;
-		border-radius: $border-radius;
+	&_body {
+		margin: 0;
+		padding: 4px 16px 12px;
+		flex-grow: 2;
 
-		&_title {
-			margin: 0;
-      padding: 12px 16px 0;
-			font-size: 16px;
-			font-weight: 500;
-      // border: 3px solid green;
+		font-size: 14px;
+		font-weight: 400;
+		word-wrap: break-word;
+	}
+
+	&_footer {
+		display: flex;
+		justify-content: space-between;
+
+		&_gap {
+			flex-grow: 2;
 		}
 
-		&_body {
-			margin: 0;
-			padding: 4px 16px 12px;
-      flex-grow: 2;
+		&_btn {
+			position: relative;
+			bottom: 8px;
+			right: 8px;
+			padding: 10px 10px 8px;
 
-			font-size: 14px;
-			font-weight: 400;
-      word-wrap: break-word;
+			border: none;
+			border-radius: 50%;
+
+			color: $text-gray;
+			background-color: transparent;
+			visibility: hidden;
 		}
 
-    &_footer {
-      display: flex;
-      justify-content: space-between;
-      
-      &_gap {
-        flex-grow: 2;
-      }
-      
-      &_btn {
-        position: relative;
-        bottom: 8px;
-        right: 8px;
-        padding: 10px 10px 8px;
-        
-        border: none;
-        border-radius: 50%;
-        
-        color: $text-gray;
-        background-color: transparent;
-        visibility: hidden;
-      }
-
-      &_btn:hover {
-        cursor: pointer;
-        background-color: $icon-hover;
-      }
-    }
+		&_btn:hover {
+			cursor: pointer;
+			background-color: $icon-hover;
+		}
 	}
+}
 
-	&_card:hover {
-    cursor: pointer;
-		box-shadow: $box-shadow;
-		transition: box-shadow 300ms;
-	}
+.notes_card:hover {
+	cursor: pointer;
+	box-shadow: $box-shadow;
+	transition: box-shadow 300ms;
+}
 
-  &_card:hover &_card_footer_btn {
-    visibility: visible;
-    transition: visibility 300ms;
-	}
+.notes_card:hover .notes_card_footer_btn {
+	visibility: visible;
+	transition: visibility 300ms;
 }

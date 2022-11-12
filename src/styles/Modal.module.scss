@@ -61,8 +61,12 @@
   font-size: 16px;
 }
 
+.button_wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .button {
-  align-self: flex-end;
   margin: 0 15px 5px 0;
   padding: 10px 24px;
   width: fit-content;
