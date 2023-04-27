@@ -1,6 +1,6 @@
 @import '_colors.scss';
 
-.notes_card {
+.card {
 	display: inline-block;
 	margin: 0 0 20px;
 	-webkit-column-break-inside: avoid;
@@ -58,13 +58,13 @@
 	}
 }
 
-.notes_card:hover {
+.card:hover {
 	cursor: pointer;
 	box-shadow: $box-shadow;
 	transition: box-shadow 300ms;
 }
 
-.notes_card:hover .notes_card_footer_btn {
+.card:hover .card_footer_btn {
 	visibility: visible;
 	transition: visibility 300ms;
 }
