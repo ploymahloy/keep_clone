@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, KeyboardEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import Note from './components/Note.jsx';
 import styles from './styles/App.module.scss';
@@ -80,12 +80,6 @@ function App() {
 		}
 	};
 
-	const formKeyPressHandler = (e: KeyboardEvent) => {
-		if (e.key === 'Enter') {
-			handleFormSubmit(e);
-		} else return;
-	};
-
 	const deleteNote = (id: number) => {
 		setNotes(notes.filter((note) => note.id !== id));
 	};
@@ -103,7 +97,6 @@ function App() {
 						placeholder="Title"
 						tabIndex={1}
 						onChange={handleNewTitle}
-						onKeyDown={formKeyPressHandler}
 						value={title}
 					/>
 					<textarea
@@ -111,7 +104,6 @@ function App() {
 						placeholder="Take a note..."
 						tabIndex={0}
 						onChange={handleNewBody}
-						onKeyDown={formKeyPressHandler}
 						value={body}
 					/>
 				</form>
