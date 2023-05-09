@@ -1,35 +1,25 @@
 import ReactDom from 'react-dom';
 import styles from '../styles/Modal.module.scss';
 
-export const Modal = (props) => {
+const Modal = (props) => {
 	const { id, body, title, onEditBody, onEditTitle, open, onClose } = props;
 
 	if (!open) return null;
 
-	const onUpdateNoteBody = (e) => {
-		console.log('onUpdateNoteBody: ', e.target.value, id);
-		onEditBody(e.target.value, id);
-	};
-
-	const onUpdateNoteTitle = (e) => {
-		console.log('onUpdateNoteTitle: ', e.target.value, id);
-		onEditTitle(e.target.value, id);
-	};
-
 	return ReactDom.createPortal(
 		<>
-      <div className={styles.overlay} onClick={onClose} />
+			<div className={styles.overlay} onClick={onClose} />
 			<div className={styles.modal} key={id}>
 				<div>
 					<input
 						className={styles.title}
 						value={title}
-						onChange={onUpdateNoteTitle}
+						onChange={(e) => onEditTitle(e.target.value, id)}
 					/>
 					<textarea
 						className={styles.body}
 						value={body}
-						onChange={onUpdateNoteBody}
+						onChange={(e) => onEditBody(e.target.value, id)}
 					/>
 				</div>
 				<button className={styles.button} onClick={onClose}>
@@ -39,4 +29,6 @@ export const Modal = (props) => {
 		</>,
 		document.getElementById('portal')
 	);
-}
+};
+
+export default Modal;

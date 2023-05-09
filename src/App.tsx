@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import { Note } from './components/Note.jsx';
+import Note from './components/Note.jsx';
 import styles from './styles/App.module.scss';
 import keep from './assets/keep.png';
 
@@ -53,6 +53,7 @@ function App() {
 	const [body, setBody] = useState('');
 	const [title, setTitle] = useState('');
 
+  // Create Note
 	const handleNewTitle = (e: ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
 	};
@@ -80,55 +81,49 @@ function App() {
 		}
 	};
 
-  const deleteNote = (id: number) => {
-    // console.log(id);
+  // Delete Note
+	const deleteNote = (id: number) => {
 		setNotes(notes.filter((note) => note.id !== id));
   };
-
-  const updateNote = (newNote: any) => {
-    const noteIndex = notes.findIndex((note) => note.id === newNote.id);
-    notes.splice(noteIndex, 1, newNote);
-    const updatedNotes = [...notes]
-    setNotes(updatedNotes); 
-  }
   
-  const updateNotes = (updateType: string, value: string, id: Number) => {
-    const theNote = notes.find((note) => note.id === id);
+  // Update Note
+  type UpdateNoteType = 'body' | 'title'; 
 
-    switch (updateType) {
-      case "body":
-        const updatedBody = {
-          ...theNote,
-          body: value
-        }
-        updateNote(updatedBody);
-        break;
-      case "title": 
-        const updatedTitle = {
-          ...theNote,
-          title: value
-        }
-        updateNote(updatedTitle);
-        break;
-      default:
-          throw new Error(`Unknown update type. ${updateType} is not recognized.`);
-    }
-    // setNotes(notes.filter((note) => note.id === updatedNote.id ? updatedNote : note));
-  }
+	const updateNote = (newNote: any) => {
+		const noteIndex = notes.findIndex((note) => note.id === newNote.id);
+		notes.splice(noteIndex, 1, newNote);
+		const updatedNotes = [...notes];
+		setNotes(updatedNotes);
+  };
 
-  const editBody = (daBody: string, id: Number) => (updateNotes("body", daBody, id));
-  const editTitle = (daTitle: string, id: Number) => (updateNotes("title", daTitle, id));
+	const updateNotes = (updateType: UpdateNoteType, value: string, id: Number) => {
+    const newNote = notes.find((note) => note.id === id);
+    
+		switch (updateType) {
+			case 'body':
+				const updatedBody = {
+					...newNote,
+					body: value,
+				};
+				updateNote(updatedBody);
+				break;
+			case 'title':
+				const updatedTitle = {
+					...newNote,
+					title: value,
+				};
+				updateNote(updatedTitle);
+				break;
+		}
+	};
 
-  const onDebugThaMassaDeboog = () => {
-    console.table(notes);
-  }
-
-  // console.log('App');
-  // console.table(notes);
+	const editBody = (editedBody: string, id: Number) =>
+		updateNotes('body', editedBody, id);
+	const editTitle = (editedTitle: string, id: Number) =>
+		updateNotes('title', editedTitle, id);
 
 	return (
-    <div className={styles.App}>
-      <button onClick={onDebugThaMassaDeboog}>massaDebooger</button>
+		<div className={styles.App}>
 			<div className={styles.brand}>
 				<img className={styles.brand_icon} src={keep} alt="" />
 				{'Persist'}
@@ -139,15 +134,15 @@ function App() {
 						className={styles.form_title}
 						placeholder="Title"
 						tabIndex={1}
-						onChange={handleNewTitle}
 						value={title}
+						onChange={handleNewTitle}
 					/>
 					<textarea
 						className={styles.form_body}
 						placeholder="Take a note..."
 						tabIndex={0}
-						onChange={handleNewBody}
 						value={body}
+						onChange={handleNewBody}
 					/>
 				</form>
 				<section className={styles.notes}>
@@ -157,10 +152,10 @@ function App() {
 								key={key}
 								id={note.id}
 								body={note.body}
-                onEditBody={editBody}
+								onEditBody={editBody}
 								title={note.title}
-                onEditTitle={editTitle}
-                deleteNote={deleteNote}
+								onEditTitle={editTitle}
+								deleteNote={deleteNote}
 								onClose={() => setIsOpen(false)}
 							/>
 						);
