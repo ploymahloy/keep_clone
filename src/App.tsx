@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
-import Note from './components/Note.jsx';
+import Note from './components/Note';
 import styles from './styles/App.module.scss';
 import keep from './assets/keep.png';
 

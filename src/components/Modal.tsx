@@ -1,15 +1,25 @@
 import ReactDom from 'react-dom';
 import styles from '../styles/Modal.module.scss';
 
-const Modal = (props) => {
-	const { id, body, title, onEditBody, onEditTitle, open, onClose } = props;
+type ModalProps = {
+	id: number;
+	body: string;
+	title: string;
+	isOpen: Boolean;
+	onEditTitle: (editedTitle: string, id: number) => void;
+	onEditBody: (editedBody: string, id: number) => void;
+	onClose: () => void;
+};
 
-	if (!open) return null;
+const Modal = (props: ModalProps) => {
+	const { id, body, title, isOpen, onEditTitle, onEditBody, onClose } = props;
+
+	if (!isOpen) return null;
 
 	return ReactDom.createPortal(
 		<>
 			<div className={styles.overlay} onClick={onClose} />
-			<div className={styles.modal} key={id}>
+			<div className={styles.modal} key={+id}>
 				<div>
 					<input
 						className={styles.title}
@@ -27,7 +37,7 @@ const Modal = (props) => {
 				</button>
 			</div>
 		</>,
-		document.getElementById('portal')
+		document.getElementById('portal')!
 	);
 };
 
